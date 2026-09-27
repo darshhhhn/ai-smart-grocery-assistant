@@ -1,68 +1,103 @@
 # AI Smart Grocery Assistant
 
-A **Generative-AI powered web application** that helps users make healthier, more cost-effective grocery choices using artificial intelligence. Built with Python and vanilla JavaScript — no frameworks, no build step, no installation required.
+An AI-powered grocery shopping web application built with Python and vanilla JavaScript (via OpenRouter). Scores every product on health, value and goal-fit using a deterministic nutrition engine, then explains each recommendation in plain language using generative AI — all from a single local interface with zero installation.
 
-![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES5+-yellow?logo=javascript&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green)
+> **Course:** 25ARE471 — Introduction to Generative AI  
+> **Student:** Darshan Ramesh (CB.EN.U4ARE23064)  
+> **Institution:** Amrita Vishwa Vidyapeetham
+
+---
 
 ## Features
 
 ### Deterministic Nutrition Engine
-- **Nutri-Score health grading** (A–E) with NOVA processing level adjustment
-- **Mifflin-St Jeor** BMR/TDEE personalised calorie & macro targets
-- **10 dietary rule-sets** — vegetarian, vegan, Jain, keto, diabetic, gluten-free and more
-- **8 allergen hard-block filters** — deterministic, never AI-decided
-- **Budget optimiser** with category-aware greedy allocation
-- **4-store price comparison** with split-shopping savings analysis
-- **Nutrition gap analysis** with one-click fix suggestions
+- Nutri-Score health grading (A–E) with NOVA processing level adjustment
+- Mifflin-St Jeor BMR/TDEE personalised calorie & macro targets
+- 10 dietary rule-sets — vegetarian, vegan, Jain, keto, diabetic, gluten-free and more
+- 8 allergen hard-block filters — deterministic, never AI-decided
+- Budget optimiser with category-aware greedy allocation
+- 4-store price comparison with split-shopping savings analysis
+- Nutrition gap analysis with one-click fix suggestions
 
-### 14 AI-Powered Features
-1. **AI Picks** — personalised product recommendations with AI-written reasoning
-2. **AI Basket Builder** — fills a full week of groceries within budget
-3. **Healthier Swaps** — quantified nutrient deltas (protein, sugar, price)
-4. **Compare Verdict** — head-to-head on up to 4 products
-5. **Meal Plan** — 3/5/7/14-day plans with full recipe generation
-6. **Recipe Generator** — complete recipes from planned meals
-7. **Streaming Chat Assistant** — knows your profile, basket and catalogue
-8. **Label Decoder** — flags hidden sugars, additives and processing level
-9. **Photo Scan (Vision)** — reads nutrition panels from camera images
-10. **Bill Scanner** — upload a grocery receipt for instant health analysis
-11. **Natural-Language Search** — structured filters from plain English queries
-12. **Nutrition Coach** — basket analysis with actionable recommendations
-13. **Use-It-Up Ideas** — recipes for expiring pantry items
-14. **Daily Tip** — personalised grocery suggestion on the dashboard
+### AI Intelligence (LLM-powered via OpenRouter)
+- **AI Picks:** personalised product recommendations with AI-written reasoning per product
+- **AI Basket Builder:** fills a full week of groceries within budget, then revises for cookability
+- **Healthier Swaps:** quantified nutrient deltas (Δ protein, sugar, price) with AI rationale
+- **Compare Verdict:** head-to-head on up to 4 products, picks winner and best-value pick
+- **Meal Plan:** 3/5/7/14-day plans with full recipe generation from basket items
+- **Streaming Chat Assistant:** knows your profile, basket, pantry and the full catalogue
+- **Label Decoder:** paste an ingredient list → hidden sugars, additives, NOVA estimate, AI verdict
+- **Photo Scan (Vision):** photograph a product pack, AI reads the nutrition panel and judges it
+- **Bill Scanner:** upload a grocery receipt for instant health analysis — healthy vs junk breakdown, kids/diabetic warnings, actionable tips
+- **Natural-Language Search:** "cheap high protein vegan snacks under ₹150" → structured filters
+- **Nutrition Coach:** basket analysis with the single highest-impact change recommendation
+- **Use-It-Up Ideas:** recipes for expiring pantry items with storage tricks
+- **Daily Tip:** one specific, personalised grocery suggestion on the dashboard
+- **Multi-model support:** GPT-4o, GPT-4o mini, Claude 3.5 Sonnet, Gemini Flash 1.5, Llama 3.1 70B, Mistral Large
 
-### Additional Features
-- Dark/light theme with responsive design
-- Voice input and camera capture
-- Pantry tracker with expiry management
-- Insights dashboard (NOVA mix, spend breakdown, protein-per-rupee table)
-- CSV export, printable shopping list, JSON backup/restore
+### Voice & Camera
+- Built-in voice input via Web Speech API for chat commands
+- Camera capture for photo scanning and bill scanning
+
+### Insights Dashboard
+- NOVA food processing breakdown (pie chart)
+- Health score distribution across basket
+- Spending by category with bar charts
+- Daily nutrition vs target coverage bars
+- Cheapest protein sources table (protein per ₹)
+- AI usage stats per session
+
+### User Experience
+- Modern responsive UI with dark and light themes
+- Onboarding wizard for profile setup
+- Pantry tracker with expiry management and shelf-life guide
+- CSV export, printable shopping list, full JSON backup and restore
 - Keyboard shortcuts for power users
-- Offline fallbacks — every AI feature degrades gracefully
+- One-click launch on Windows (`launch.bat`)
+- Offline fallbacks — every AI feature degrades to a deterministic result instead of failing
+
+---
+
+## Screenshots
+
+| Dashboard | AI Picks | Bill Scanner |
+|-----------|----------|-------------|
+| Personalised daily tip, calorie/macro gaps, basket health gauge | Ranked products with AI-written reasoning and health grades | Upload a receipt → item-by-item health verdict, kids/diabetic warnings |
+
+| Insights | Healthier Swaps | Streaming Chat |
+|----------|----------------|----------------|
+| NOVA mix, spend breakdown, protein-per-rupee table | Quantified nutrient deltas with one-click swap | Profile-aware assistant with token-by-token streaming |
+
+---
 
 ## Quick Start
 
-### Option 1: Double-click (Windows)
-```
-Double-click launch.bat
-```
-That's it. No terminal, no installation, no `pip install`. The app opens in your browser automatically.
+### One-Click Launch (Windows)
 
-### Option 2: Command line
+Double-click **`launch.bat`**. It will:
+1. Find a working Python interpreter
+2. Start the local backend (standard library only — nothing to install)
+3. Open the app in your default browser automatically
+
+Keep the console window open while you use the app. Press `Ctrl+C` to stop.
+
+### Manual Launch
+
 ```bash
 python server.py
 ```
 
-### Option 3: No Python
-Open `web/index.html` directly in your browser. The app still works — it calls OpenRouter from the browser instead.
+Then open `http://localhost:8765`.
+
+### No Python? No Problem
+
+Open `web/index.html` directly in your browser. The app still works — it calls OpenRouter from the browser instead of through the backend.
+
+---
 
 ## API Key Setup
 
-The app uses [OpenRouter](https://openrouter.ai/) to access AI models (GPT-4o, Claude 3.5 Sonnet, Gemini Flash, etc.).
-
-**Choose one method:**
+The app uses [OpenRouter](https://openrouter.ai/) as a unified API gateway to access multiple AI models.
 
 | Method | How |
 |---|---|
@@ -73,30 +108,20 @@ The app uses [OpenRouter](https://openrouter.ai/) to access AI models (GPT-4o, C
 
 Get a free API key at [openrouter.ai/keys](https://openrouter.ai/keys).
 
-## Architecture
-
-```
-Browser  ──POST /api/chat──►  server.py  ──HTTPS──►  OpenRouter  ──►  GPT-4o / Claude / Gemini
-   ▲                              │
-   └────── SSE token stream ──────┘
-```
-
-- The API key stays server-side, never exposed to the browser
-- Requests are serialised in a queue to avoid rate-limit errors
-- Adaptive token budgeting — adjusts to remaining API credit balance
-- Server-Sent Events for real-time token-by-token AI response streaming
+---
 
 ## Project Structure
 
 ```
-├── launch.bat              # Windows launcher (double-click to start)
+ai-smart-grocery-assistant/
+├── launch.bat              # One-click Windows launcher
 ├── server.py               # Python backend — static server + OpenRouter proxy (stdlib only)
 ├── .gitignore
 ├── README.md
 └── web/
     ├── index.html          # Single-page application entry point
     ├── css/
-    │   └── style.css       # All styling with dark/light themes
+    │   └── style.css       # Full stylesheet (dark/light themes, responsive)
     └── js/
         ├── config.js       # Browser fallback configuration
         ├── data.js         # 137-product catalogue, 4 stores, diet rules, additive DB
@@ -115,7 +140,54 @@ Browser  ──POST /api/chat──►  server.py  ──HTTPS──►  OpenRou
             └── profile.js      # Profile & Settings
 ```
 
-**Zero dependencies.** No `node_modules`, no framework, no build step. Plain ES5-compatible JavaScript that runs from `file://` as well as from the server.
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| **Backend** | Python 3.x (standard library only — zero dependencies) |
+| **Frontend** | Vanilla JavaScript (ES5) + CSS (no framework, no build step) |
+| **LLM** | OpenRouter API (multi-model gateway) |
+| **Streaming** | Server-Sent Events (SSE) via chunked transfer encoding |
+| **Charts** | Custom dependency-free SVG rendering |
+| **Voice** | Web Speech API (browser-native) |
+| **Vision** | GPT-4o / Claude 3.5 multimodal models |
+| **Storage** | localStorage (client-side persistence) |
+
+---
+
+## Architecture
+
+```
+Browser  ──POST /api/chat──►  server.py  ──HTTPS──►  OpenRouter  ──►  GPT-4o / Claude / Gemini
+   ▲                              │
+   └────── SSE token stream ──────┘
+```
+
+The API key stays server-side, never exposed to the browser. The proxy removes CORS concerns and streams tokens back as server-sent events.
+
+---
+
+## Configuration
+
+- **Default LLM:** `openai/gpt-4o` — change in **Profile & Settings → AI engine**
+- **API Key:** Set the `OPENROUTER_API_KEY` environment variable, or create `api_key.txt`, or paste in Settings
+- **Port:** Defaults to `8765`, auto-increments if occupied
+
+---
+
+## Key Technical Highlights
+
+- **Deterministic safety layer** — allergen and dietary filtering is never delegated to AI; hard-coded rule engine handles all safety decisions
+- **Hallucination control** via retrieval-grounded prompting — every AI response is anchored to real product data and user numbers from the database
+- **Adaptive token budgeting** — when API credit balance is low, the client parses the affordable limit from the error, shrinks the prompt and retries instead of failing
+- **Request serialisation** with exponential backoff — prevents 402/429 errors from concurrent requests against small credit balances
+- **Graceful degradation** — all 14 AI features have deterministic offline fallbacks; the app never hard-fails
+- **Zero-dependency backend** — server.py uses only Python's standard library; nothing to install
+- **Single-page architecture** — one HTML file, hash-based routing, pub/sub state management, all views rendered dynamically
+
+---
 
 ## Supported AI Models
 
@@ -128,7 +200,7 @@ Browser  ──POST /api/chat──►  server.py  ──HTTPS──►  OpenRou
 | Llama 3.1 70B | ❌ | Open weights |
 | Mistral Large | ❌ | — |
 
-Change the model in **Profile & Settings → AI engine**.
+---
 
 ## Keyboard Shortcuts
 
@@ -144,14 +216,20 @@ Change the model in **Profile & Settings → AI engine**.
 | `P` | Profile |
 | `/` | Search |
 
+---
+
 ## Data
 
-The 137-product catalogue contains realistic reference data for Indian retail — typical brands, pack sizes, prices in ₹ and per-100g nutrition. Store prices are derived from base prices with per-store multipliers. This is a demonstration dataset, not a live retailer feed.
+The 137-product catalogue contains realistic reference data for Indian retail — typical brands, pack sizes, prices in ₹ and per-100g nutrition across 8 fields (energy, protein, carbs, fibre, sugar, fat, saturated fat, sodium). Store prices are derived from base prices with per-store multipliers. This is a demonstration dataset, not a live retailer feed.
+
+---
 
 ## Disclaimer
 
 This application provides general nutrition information, not medical advice. Anyone managing a clinical condition should confirm decisions with a qualified professional.
 
+---
+
 ## License
 
-MIT
+This project was built as an academic submission for 25ARE471 (Introduction to Generative AI) at Amrita Vishwa Vidyapeetham.
