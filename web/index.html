@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Smart Grocery Assistant</title>
+  <meta name="description" content="Generative-AI powered grocery assistant that recommends healthier, cheaper products for your budget, diet and health goals.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app">
+  <!-- ------------------------------------------------------- sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">🛒</div>
+      <div class="brand-text">
+        <b>Smart Grocery</b>
+        <span>AI Assistant</span>
+      </div>
+    </div>
+
+    <nav class="nav" id="nav">
+      <div class="nav-section">Plan</div>
+      <button class="nav-item" data-view="dashboard"><span class="ico">📊</span> Dashboard</button>
+      <button class="nav-item" data-view="recommend"><span class="ico">✨</span> AI Picks</button>
+      <button class="nav-item" data-view="shop"><span class="ico">🥗</span> Browse</button>
+      <button class="nav-item" data-view="basket"><span class="ico">🧺</span> Basket <span class="pill muted" id="navBasketCount">0</span></button>
+
+      <div class="nav-section">Decide</div>
+      <button class="nav-item" data-view="compare"><span class="ico">⚖️</span> Compare <span class="pill muted" id="navCompareCount">0</span></button>
+      <button class="nav-item" data-view="swaps"><span class="ico">🔄</span> Healthier Swaps</button>
+      <button class="nav-item" data-view="stores"><span class="ico">🏬</span> Store Prices</button>
+
+      <div class="nav-section">Cook &amp; Track</div>
+      <button class="nav-item" data-view="mealplan"><span class="ico">📅</span> Meal Plan</button>
+      <button class="nav-item" data-view="pantry"><span class="ico">🥫</span> Pantry</button>
+      <button class="nav-item" data-view="scanner"><span class="ico">🔬</span> Label Decoder</button>
+      <button class="nav-item" data-view="vision"><span class="ico">📷</span> Photo Scan</button>
+      <button class="nav-item" data-view="billscan"><span class="ico">🧾</span> Bill Scanner</button>
+
+      <div class="nav-section">More</div>
+      <button class="nav-item" data-view="assistant"><span class="ico">💬</span> Assistant</button>
+      <button class="nav-item" data-view="insights"><span class="ico">📈</span> Insights</button>
+      <button class="nav-item" data-view="profile"><span class="ico">⚙️</span> Profile &amp; Settings</button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="status-chip" id="statusChip" title="AI connection status">
+        <span class="dot" id="statusDot"></span>
+        <span id="statusText">Checking AI…</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ---------------------------------------------------------- main -->
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn hidden" id="menuBtn" title="Menu">☰</button>
+      <div>
+        <h1 id="viewTitle">Dashboard</h1>
+        <div class="sub" id="viewSub">Your personalised grocery intelligence</div>
+      </div>
+      <div class="topbar-spacer"></div>
+
+      <div class="budget-chip" id="budgetChip" title="Basket total vs budget">
+        <span>🧺</span>
+        <div>
+          <b id="budgetAmount">₹0</b>
+          <small id="budgetOf">of ₹4000</small>
+        </div>
+        <div class="mini-track"><div class="mini-fill" id="budgetFill" style="width:0%"></div></div>
+      </div>
+
+      <button class="icon-btn" id="themeBtn" title="Toggle theme">🌙</button>
+      <button class="icon-btn" id="quickAiBtn" title="Ask the assistant">💬</button>
+    </header>
+
+    <section class="view" id="view"></section>
+  </main>
+</div>
+
+<div class="toasts" id="toasts"></div>
+<div id="modalRoot"></div>
+<div id="onboardRoot"></div>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/store.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/views/dashboard.js"></script>
+<script src="js/views/shop.js"></script>
+<script src="js/views/basket.js"></script>
+<script src="js/views/tools.js"></script>
+<script src="js/views/assistant.js"></script>
+<script src="js/views/profile.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
